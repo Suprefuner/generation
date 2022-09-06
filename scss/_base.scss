@@ -1,0 +1,60 @@
+// COLORS
+$color-var: 5;
+
+$color-primary: #95c2ba;
+$color-primary-light: lighten($color-primary, $color-var);
+$color-primary-dark: darken($color-primary, $color-var);
+
+$color-accent: #e23332;
+$color-accent-light: lighten($color-accent, $color-var);
+$color-accent-dark: darken($color-accent, $color-var);
+
+// FONT
+$ff: "Rubik", sans-serif;
+$fw-l: 300;
+$fw-m: 500;
+$fw-b: 700;
+
+// FOT TESTING
+$test-border: 1px solid red;
+
+//////////////////////////////////////////////////////////////////////////
+
+// GENERAL RESET
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: $ff;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $color-primary-light;
+  // background-image: linear-gradient(
+  //   to bottom,
+  //   $color-primary-light,
+  //   $color-primary-dark
+  // );
+  display: flex;
+  justify-content: center;
+}

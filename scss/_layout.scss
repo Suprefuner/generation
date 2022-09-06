@@ -1,0 +1,284 @@
+@use "./base" as *;
+@use "./animation" as *;
+
+.container {
+  //   border: 1px solid green;
+  width: 90%;
+  max-width: 120rem;
+  padding-inline: 3rem;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 40%;
+    right: -20%;
+    width: 35rem;
+    aspect-ratio: 1;
+    background-color: $color-accent;
+    border-radius: 50%;
+    z-index: 400;
+
+    box-shadow: -10rem -8rem 0 -5rem rgba($color-accent-dark, 0.3);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    left: -15%;
+    width: 20rem;
+    aspect-ratio: 1;
+    background-color: lighten($color-accent-light, 5);
+    border-radius: 50%;
+    z-index: 400;
+
+    box-shadow: 10rem -55rem 0 -7rem $color-accent;
+  }
+}
+
+/////////////////////////////////////////////
+// HEADER
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 10vw;
+  border-bottom: 1px solid $color-accent;
+  position: fixed;
+  left: 0;
+  right: 0;
+  //   left: 10vw;
+  //   right: 10vw;
+
+  z-index: 500;
+  background-color: $color-primary-light;
+
+  &__logo {
+    height: 4rem;
+  }
+
+  &__nav {
+    &__list {
+      display: flex;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        border-right: 1px solid $color-accent;
+      }
+    }
+
+    &__link {
+      display: inline-block;
+      position: relative;
+
+      padding: 1rem 3rem;
+      text-transform: uppercase;
+      transform: scale(1);
+
+      transition: 0.2s;
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 100%;
+        right: 100%;
+        border-bottom: 1px solid currentColor;
+        transition: 0.2s;
+      }
+
+      &:link,
+      &:visited {
+        color: $color-accent;
+      }
+
+      &:hover {
+        color: lighten($color-accent, 10);
+        transform: scale(1.2);
+
+        &:before {
+          left: 20%;
+          right: 20%;
+        }
+      }
+    }
+  }
+}
+
+/////////////////////////////////////////////
+// MAIN
+.section__about {
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  //   border: $test-border;
+  height: 80vh;
+  color: $color-accent;
+  position: relative;
+
+  .heading--1 {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+  }
+
+  .paragraph {
+    font-size: 6rem;
+    font-weight: 500;
+    font-style: italic;
+
+    &:nth-child(2) {
+      position: fixed;
+      top: 42%;
+      left: 23%;
+      z-index: -100;
+    }
+
+    &:nth-child(3) {
+      position: fixed;
+      top: 50%;
+      left: 35%;
+      z-index: 100;
+    }
+  }
+
+  .photo-container {
+    position: absolute;
+    bottom: 10%;
+    left: 15%;
+    width: 20vw;
+  }
+  .about__photo {
+    width: 100%;
+  }
+
+  .btn--arrow {
+    font-size: 8rem;
+    animation: moveUpDown 2s infinite;
+
+    &:link,
+    &:visited {
+      color: currentColor;
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 350%;
+      aspect-ratio: 1;
+      border: 7px solid $color-accent;
+      border-radius: 50%;
+
+      background-color: $color-primary-light;
+      z-index: -1;
+    }
+  }
+}
+
+/////////////////////////////////////////////
+// FORM
+.section__contact {
+  position: relative;
+  z-index: 200;
+  height: 100rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+
+  .form-container {
+    background-color: lighten($color-accent-light, 20);
+    border-radius: 10px;
+    box-shadow: 1rem 1rem 3rem rgba(black, 0.2);
+    // box-shadow: 0 1rem 3rem rgba(black, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+  }
+
+  .form {
+    &:invalid button {
+      background-color: $color-accent-light;
+      color: darken($color-accent-light, 5);
+    }
+
+    &:invalid button:hover {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    &__group {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    input {
+      width: 100%;
+      font-family: $ff;
+      font-weight: 300;
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      border: none;
+      border-bottom: 5px solid white;
+
+      &:valid {
+        border-bottom: 5px solid $color-primary;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    textarea {
+      font-weight: 300;
+      font-family: $ff;
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      resize: none;
+      border-radius: 5px;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: none;
+      background-color: #fff;
+      color: $color-accent;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-0.7rem);
+        box-shadow: 0 0.5rem 0 rgba(black, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0.3rem);
+        box-shadow: 0 0.2rem 0 rgba(black, 0.2);
+      }
+    }
+  }
+}
